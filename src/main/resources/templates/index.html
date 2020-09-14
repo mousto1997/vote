@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Vote - Accueil</title>
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style-responsive.css" rel="stylesheet">
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Basculer à la Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="index.html" class="logo"><b>ASSEMBLEE NATIONALE</b></a>
+      <!--logo end-->
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li>
+            <a th:href = "@{/login?logout}" class="logout"  th:inline="text">
+			<!-- 	[[${#httpServletRequest.remoteUser}]]   -->
+				Se deconnecter
+			</a>
+          
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul style="font-weight: bold; font-size: 18px;" class="sidebar-menu" id="nav-accordion">
+          <p class="centered" th:if="${deputec}">
+            <a th:href="@{/depute/detailDepute(login=${deputec.login})}"><img th:src="@{'/image/'+${deputec.photo}}" class="img-circle" height="80" width="80"></a>
+          </p>
+          <h5 class="centered" th:if="${deputec}" th:text="${deputec.prenom}+' '+${deputec.nomDepute}"></h5>
+          <li class="mt">
+            <a th:href="@{/depute/index}">
+              <i class="fa fa-home fa-large"></i>
+              <span style="font-weight: bold; font-size: 18px;">ACCUEIL</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-user"></i>
+              <span style="font-weight: bold; font-size: 18px;">DEPUTE</span>
+              </a>
+            <ul class="sub">
+              <li  style="font-weight: bold;">
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/depute}">DEPUTE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/groupeParlementaire}">GROUPE PARLEMENTAIRE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/commissionInfo}">COMMISSION INFO</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/commissionPermanente}">COMMISSION PERM</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-gavel"></i>
+              <span style="font-weight: bold; font-size: 18px;">PLENIERE</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/session}">SESSION</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/pleniere}">PLENIERE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/typeSession}">TYPE DE SESSION</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span style="font-weight: bold; font-size: 18px;">LOI</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/textLoi}">TEXTE DE LOIS</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/categorie}">CATEGORIE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/typeLoi}">TYPE DE LOIS</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/ammendeCom}">AMENDEMENT COM</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/ammendeDep}">AMENDEMENT DEP</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu" th:if="${deputec.post}=='president'">
+            <a href="javascript:;">
+              <i class="fa fa-lock"></i>
+              <span style="font-weight: bold; font-size: 18px;">PRIVILEGE DU PRESIDENT</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/president/privilege}">PRIVILEGE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/president/privilegeDepute}">PRIVILEGE DEPUTE</a>
+              </li>
+       	    </ul>
+       	  </li>
+       	</ul>  
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+  <section id="main-content" style="background-image: url('/image/palais_peuple.jpg'); background-repeat: no-repeat; background-size: 100%">
+      <section class="wrapper site-min-height"><br><br>
+        <h1 style="font-weight: bold; text-align: center;"><span style="color: red;">ASSEMBLEE NATIO</span><span style="color: yellow;">NALE DE LA REPU</span><span  style="color: green;">BLIQUE DE GUINNE</span></h1><br><br>
+        <br><h1 style="font-weight: bold; font-size: 38px; color: white; text-align: center;">PLATEFORME DE VOTE</h1><br><br>
+        <div class="row mt">
+          <div class="col-lg-12 col-md-12">
+            <!-- CHART PANELS -->
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${msg}">
+                <a  th:href="@{/depute/vote}"><button style="font-weight: bold; font-size: 22px;" class="btn btn-lg btn-theme03" th:text="${msg}"></button></a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${error}">
+                <button class="btn btn-lg"  style="background-color: red; color: white;" th:text="${error}"></button>
+                <a class="btn btn-lg btn-theme03" th:href="@{/depute/index}">OK</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${confirmVote}">
+                <button class="btn btn-lg"  style="color: black;" th:text="${confirmVote}"></button>
+                <a class="btn btn-lg btn-theme03" th:href="@{/depute/resultat(idLoi=${text.idLoi})}">Voir résultat</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${loiActive}">
+                <a class="btn btn-lg btn-theme03" th:href="@{/depute/resultat(idLoi=${loiActive.idLoi})}">Voir résultat</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${failedVote}">
+                <button class="btn btn-lg"  style="color: black;" th:text="${failedVote}"></button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12" style="text-align: center" th:if="${confirmSetPass}">
+                <button class="btn btn-lg"  style="color: black;" th:text="${confirmSetPass}"></button>
+              </div>
+            </div><br><br>
+            <div  class="col-lg-12 col-md-12" style="text-align: center" th:if="${desactiveVote}">
+            <div class="row" th:if="${deputec.post}=='president'">
+            	<form role="form" class="form-horizontal style-form" th:action="@{/president/saveText}" th:object="${textLoi}" method="post">
+                
+               <input type="hidden" th:value="${textLoi.idLoi}" name="idLoi" id="f-name">
+               
+               <input type="hidden" th:value="${textLoi.numero}" name="numero" id="f-name">
+                   
+               <input type="hidden" th:value="${textLoi.libelle}" name="libelle" >
+               
+               <input type="hidden" th:value="${textLoi.article1}" name="article1" />
+               
+               <input type="hidden" th:value="${textLoi.article2}" name="article2" />
+               
+               <input type="hidden" th:value="${textLoi.article3}" name="article3" />
+               
+               <input type="hidden" th:value="${textLoi.article4}" name="article4" />
+              
+               <input type="hidden" th:value="${textLoi.article5}" name="article5" />
+              
+		       <input type="hidden" th:value="${textLoi.categories.idCat}" name="categories">
+		      
+		       <input type="hidden" th:value="${textLoi.plenieres.idPleniere}" name="plenieres">
+		       
+		       <input type="hidden" th:value="${textLoi.typeLois.idType}" name="typeLois"/>
+		       
+		       <input type="hidden" th:value="0" name="active"/>		       
+		       
+		          
+                <div class="form-group">
+                  <div class=" col-lg-12">
+                    <button  onclick="return confirm('Désactiver le vote.')" class="btn btn-lg btn-theme03" type="submit">Désactiver le vote</button>
+                    
+                  </div>
+                </div>
+              </form>
+            </div>
+            </div>
+            <!--  END SIXTH ROW OF PANELS -->
+          </div>
+        </div>
+      </section>
+      <!-- /wrapper -->
+    </section>
+  
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Assemblée National</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Spring and J2EE by <a href="https://templatemag.com/">BARRY</a>
+        </div>
+        <a th:href="@{/depute/index}" class="go-top"><i class="fa fa-angle-up"></i></a>
+      </div>
+    </footer>
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="/lib/jquery/jquery.min.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/lib/jquery.scrollTo.min.js"></script>
+  <script src="/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="/lib/common-scripts.js"></script>
+  <!--script for this page-->
+</body>
+</html>

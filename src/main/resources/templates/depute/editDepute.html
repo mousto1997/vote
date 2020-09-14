@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="Dashboard">
+  <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+  <title>Vote - Edit depute</title>
+
+  <!-- Favicons -->
+  <link href="/img/favicon.png" rel="icon">
+  <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Bootstrap core CSS -->
+  <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!--external css-->
+  <link href="/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/style-responsive.css" rel="stylesheet">
+  
+  <!-- =======================================================
+    Template Name: Dashio
+    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
+    Author: TemplateMag.com
+    License: https://templatemag.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+  <section id="container">
+    <!-- **********************************************************************************************************************************************************
+        TOP BAR CONTENT & NOTIFICATIONS
+        *********************************************************************************************************************************************************** -->
+    <!--header start-->
+    <header class="header black-bg">
+      <div class="sidebar-toggle-box">
+        <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+      </div>
+      <!--logo start-->
+      <a href="index.html" class="logo"><b>EDIT DEPUTE <span></span></b></a>
+      <!--logo end-->
+      <div class="nav notify-row" id="top_menu">
+        <!--  notification start -->
+        <ul class="nav top-menu">
+          </ul>
+        <!--  notification end -->
+      </div>
+      <div class="top-menu">
+        <ul class="nav pull-right top-menu">
+          <li>
+            <a th:href = "@{/login?logout}" class="logout"  th:inline="text">
+				<!-- [[${#httpServletRequest.remoteUser}]]-->
+				Se deconnecter
+			</a>
+          
+          </li>
+        </ul>
+      </div>
+    </header>
+    <!--header end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN SIDEBAR MENU
+        *********************************************************************************************************************************************************** -->
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul style="font-weight: bold; font-size: 18px;" class="sidebar-menu" id="nav-accordion">
+          <p class="centered" th:if="${deputec}">
+            <a th:href="@{/depute/detailDepute(login=${deputec.login})}"><img th:src="@{'/image/'+${deputec.photo}}" class="img-circle" height="80" width="80"></a>
+          </p>
+          <h5 class="centered" th:if="${deputec}" th:text="${deputec.prenom}+' '+${deputec.nomDepute}"></h5>
+          <li class="mt">
+            <a th:href="@{/depute/index}">
+              <i class="fa fa-home fa-large"></i>
+              <span style="font-weight: bold; font-size: 18px;">ACCUEIL</span>
+              </a>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-user"></i>
+              <span style="font-weight: bold; font-size: 18px;">DEPUTE</span>
+              </a>
+            <ul class="sub">
+              <li  style="font-weight: bold;">
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/depute}">DEPUTE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/groupeParlementaire}">GROUPE PARLEMENTAIRE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/commissionInfo}">COMMISSION INFO</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/commissionPermanente}">COMMISSION PERM</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-gavel"></i>
+              <span style="font-weight: bold; font-size: 18px;">PLENIERE</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/session}">SESSION</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/pleniere}">PLENIERE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/typeSession}">TYPE DE SESSION</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;">
+              <i class="fa fa-book"></i>
+              <span style="font-weight: bold; font-size: 18px;">LOI</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/textLoi}">TEXTE DE LOIS</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/categorie}">CATEGORIE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/typeLoi}">TYPE DE LOIS</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/ammendeCom}">AMENDEMENT COM</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/depute/ammendeDep}">AMENDEMENT DEP</a>
+              </li>
+            </ul>
+          </li>
+          <li class="sub-menu" th:if="${deputec.post}=='president'">
+            <a href="javascript:;">
+              <i class="fa fa-lock"></i>
+              <span style="font-weight: bold; font-size: 18px;">PRIVILEGE DU PRESIDENT</span>
+              </a>
+            <ul class="sub">
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/president/privilege}">PRIVILEGE</a>
+              </li>
+              <li>
+                <a style="font-weight: bold; font-size: 16px;" th:href="@{/president/privilegeDepute}">PRIVILEGE DEPUTE</a>
+              </li>
+       	    </ul>
+       	  </li>
+       	</ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+    <!--sidebar end-->
+    <!-- **********************************************************************************************************************************************************
+        MAIN CONTENT
+        *********************************************************************************************************************************************************** -->
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <!-- row -->
+        <div class="row mt">
+              <div class="col-lg-12">
+	            <h4><i class="fa fa-angle-right"></i>Modifier les renseignement d'un depute</h4>
+	            <div class="form-panel">
+	              <div class="form">
+	                <form class="form-horizontal style-form" id="signupForm" method="post" role="form"
+	                	th:action="@{/secretaire/saveDepute}" th:object="${depute}" enctype="multipart/form-data">
+	                	<input type="hidden" name="login" th:field=*{login}>
+	                  <div class="form-group has-success">
+	                    <label for="firstname" class="control-label col-lg-2">Nom (<span style="color: red;"> Obligatoire </span>)</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="firstname"  th:field=*{nomDepute} name="nomDepute" type="text" />
+	                      <span style="color: red;" th:errors="${depute.nomDepute}"></span>
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="lastname" class="control-label col-lg-2">Prenom (<span style="color: red;"> Obligatoire </span>)</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="lastname" name="prenom" th:field=*{prenom} type="text" />
+	                      <span style="color: red;" th:errors="${depute.prenom}"></span>
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="lastname" class="control-label col-lg-2">Date naissance</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="lastname" name="dt" type="date" />
+	                    </div>
+	                  </div>  
+	                  <div class="form-group has-success">
+	                    <label for="username" class="control-label col-lg-2">Lieu de naissance</label>
+	                    <div class="col-lg-10">
+	                      <input class="form-control" th:field=*{lieuNaiss} id="username" name="lieuNaiss" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="firstname" class="control-label col-lg-2">Proffession</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="firstname" th:field=*{profession} name="profession" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="lastname" class="control-label col-lg-2">Adresse</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="lastname" th:field=*{addresse} name="addresse" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="firstname" class="control-label col-lg-2">Partie politique (<span style="color: red;"> Obligatoire </span>)</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="firstname" th:field=*{partiePolique} name="partiePolique" type="text" />
+	                      <span style="color: red;" th:errors="${depute.partiePolique}"></span>
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="firstname" class="control-label col-lg-2">Position au partie politique</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="firstname" th:field=*{positionAuPartiePolique} name="positionAuPartiePolique" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="username" class="control-label col-lg-2">Post </label>
+	                    <div class="col-lg-10">
+	                      <input class="form-control" th:field=*{post} id="username" name="post" type="text" />
+	                    </div>
+	                  </div>
+	                  <input class="form-control" id="username" name="mdp" type="hidden" />
+				      <div class="form-group has-success">
+				        <label for="nsession" class="control-label col-lg-2">Groupe parlementaire</label>
+				          <div class="col-lg-10">
+				          <select class="form-control" name="groupe">
+				            <option type="text" th:each="p:${groupes}" th:value="${p.idGroupe}" th:text="${p.nomGroupe}"></option>
+				          </select>
+				        </div> 
+				      </div>
+				      <div class="form-group has-success">
+				        <label for="nsession" class="control-label col-lg-2">Commission permanante</label>
+				          <div class="col-lg-10">
+				          <select class="form-control" name="commission">
+				            <option type="text" th:each="p:${commissions}" th:value="${p.idComPerm}" th:text="${p.nomComPerm}"></option>
+				          </select>
+				        </div> 
+				      </div>
+	                  <div class="form-group has-success">
+	                    <label for="lastname" class="control-label col-lg-2">Formation</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" th:field=*{formation} id="lastname" name="formation" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="username" class="control-label col-lg-2">Diplome</label>
+	                    <div class="col-lg-10">
+	                      <input class="form-control" th:field=*{diplome} id="username" name="diplome" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="lastname" class="control-label col-lg-2">Telephone</label>
+	                    <div class="col-lg-10">
+	                      <input class=" form-control" id="lastname" th:field=*{tel} name="tel" type="text" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="email" class="control-label col-lg-2">Email</label>
+	                    <div class="col-lg-10">
+	                      <input class="form-control" th:field=*{email} id="email" name="email" type="email" />
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="agree" class="control-label col-lg-2 col-sm-3">Elu(e) de la Liste</label>
+	                    <div>
+	                       <input type="radio"  value="Nationale"  name="liste" /> Nationale
+	                    </div>
+	                    <div> 
+	                       <input type="radio"  value="Uninominale" name="liste" /> Uninominale
+	                   </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="email" class="control-label col-lg-2">vision</label>
+	                    <div class="col-lg-10">
+	                      <textarea class="form-control" th:field=*{visionPolitique} id="email" name="visionPolitique" ></textarea>
+	                    </div>
+	                  </div>
+	                  <div class="form-group has-success">
+	                    <label for="username" class="control-label col-lg-2">Photo </label>
+	                    <div class="col-lg-10">
+	                      <input class="form-control " id="username" name="file" type="file"/>
+	                    </div>
+	                  </div>
+	                  <div class="form-group">
+	                    <div class="col-lg-offset-2 col-lg-10">
+	                      <button class="btn btn-theme" type="submit">Enregistrer</button>
+	                      <a th:href="@{/depute/depute}">
+	                        <button class="btn btn-theme04" type="reset">Annuler</button>
+	                      </a>  
+	                    </div>
+	                  </div>
+	                </form>
+	              </div>
+	            </div>
+	            <!-- /form-panel -->
+	          </div>
+          <!-- /col-lg-12 -->
+        </div>
+        <!-- /row -->
+      </section>
+    </section><br><br><br><br><br><br><br><br><br>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Copyrights <strong>Assemblée Nationale</strong>. All Rights Reserved
+        </p>
+        <div class="credits">
+          <!--
+            You are NOT allowed to delete the credit link to TemplateMag with free version.
+            You can delete the credit link only if you bought the pro version.
+            Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
+            Licensing information: https://templatemag.com/license/
+          -->
+          Created with Spring and J2EE by <a href="https://templatemag.com/">BARRY</a>
+        </div>
+      </div>
+    </footer>
+    <!--footer end-->
+  </section>
+  <!-- js placed at the end of the document so the pages load faster -->
+  <script src="/lib/jquery/jquery.min.js"></script>
+  <script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+  <script class="include" type="text/javascript" src="/lib/jquery.dcjqaccordion.2.7.js"></script>
+  <script src="/lib/jquery.scrollTo.min.js"></script>
+  <script src="/lib/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--common script for all pages-->
+  <script src="/lib/common-scripts.js"></script>
+  <!--script for this page-->
+</body>
+</html>

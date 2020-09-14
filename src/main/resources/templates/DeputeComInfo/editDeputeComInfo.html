@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Vote - Député Commission Info</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<script type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div th:include="layout"></div>
+
+<div layout:fragment="content">
+<h1 class="center">Participe commission info</h1>
+<div class="container col-md-5 col-sm-12 col-md-offsee ">
+  <div class="panel panel-primary">
+    <div class="panel-heading center" >Modifier une participation</div>
+    <div class="panel-body">
+      <form th:action="@{/saveDeputeComInfo}" th:object="${participe}" method="post">
+      <label>ID : </label>
+      <label th:text="${participe.idParticipe}"></label>
+      <input type="hidden" name="idParticipe" th:field=*{idParticipe} class="form-control" id="post" placeholder="post"/>
+       <div class="form-group">
+          <label for="post" class="cotrol-label">Post occupé : </label>
+          <input type="text" name="post" th:field=*{post} class="form-control" id="post" placeholder="post"/>
+          <span class="red" th:errors="${participe.post}"></span>
+        </div>
+        <div class="form-group">
+          <label for="nsession" class="cotrol-label">Commission : </label>
+          <select class="form-control" name="comInfo">
+            <option type="text" th:each="c:${commissionInfos}" th:value="${c.idComInfo}" th:text="${c.nomComInfo}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nsession" class="cotrol-label">Député conserné : </label>
+          <select class="form-control" name="deputes">
+            <option type="text" th:each="a:${deputes}" th:value="${a.login}" th:text="${a.prenom}"></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container col-md-6 col-sm-8 ">
+  <table class="table">
+    <tr>
+     <th> ID</th><th>POST</th><th>DEPUTE</th><th>COMMISSION</th><th>MODIFIER</th><th>SUPPRIMER</th>
+    </tr>
+    <tbody>
+      <tr th:each="c:${participes}">
+        <td th:text="${c.idParticipe}"></td>
+        <td th:text="${c.post}"></td>
+        <td th:text="${c.deputes.prenom}" ></td>
+        <td th:text="${c.comInfo.nomComInfo}" ></td>
+        <td><a th:href="@{editDeputeComInfo(idParticipe=${c.idParticipe})}">Modifier</a></td>
+        <td><a onclick="return confirm('Voulez vous vraiment supprimer ?')" th:href="@{deleteDeputeComInfo(idParticipe=${c.idParticipe})}">Supprimer</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" 
+		 xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <title>Logistics &mdash; Colorlib Website Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" th:href="@{https://fonts.googleapis.com/css?family=Poppins:200,300,400,700,900|Display+Playfair:200,300,400,700}"> 
+    <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{css/owl.theme.default.min.css}">
+
+    <link rel="stylesheet" th:href="@{css/bootstrap-datepicker.css}">
+
+    <link rel="stylesheet" th:href="@{fonts/flaticon/font/flaticon.css}">
+
+
+
+    <link rel="stylesheet" th:href="@{css/aos.css}">
+
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    
+  </head>
+  <body>
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    <header class="site-navbar py-3" role="banner">
+        <div class="row align-items-center">
+        
+          <div class="col-12 col-md-12 d-none d-xl-block" style=" background-color: red;">
+            <nav class="site-navigation position-relative text-right nav"  role="navigation">
+
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="has-children">
+                  <a href="services.html">Depute</a>
+                  <ul class="dropdown">
+                    <li><a th:href = "@{/commissionInfo}">Commission Info</a></li>
+				    <li><a th:href = "@{/commissionPermanente}">Commission per</a></li>
+				    <li><a th:href = "@{/DeputeComInfo}">Participe commission info</a></li>
+					<li><a th:href = "@{/participegp}">Participe Groupe par</a></li>
+					<li><a th:href = "@{/participecp}">Participe Commission permanante</a></li>
+					<li><a th:href = "@{/depute}">Depute</a></li>
+					<li><a th:href = "@{/groupeParlementaire}">Groupe parlementaire</a></li>
+                  </ul>
+                </li>
+                  <li class="has-children">
+                  <a href="services.html">Session</a>
+                  <ul class="dropdown">
+                    <li><a th:href = "@{/annee}">Annee</a></li>
+                    <li><a th:href = "@{/moi}">Moi</a></li>
+                    <li><a th:href = "@{/typeSession}">Type session</a></li>
+                    <li><a th:href = "@{/session}">Session</a></li>
+                    <li><a th:href = "@{/pleniere}">Pleniere</a></li>
+                  </ul>
+                </li>
+                  <li class="has-children">
+                  <a href="services.html">Lois</a>
+                  <ul class="dropdown">
+                   <li><a th:href = "@{/textLoi}">Loi</a></li>
+					<li><a th:href = "@{/typeLoi}">Type loi</a></li>
+                    <li><a th:href = "@{/ammendeDep}">Ammendement Député</a></li>
+					<li><a th:href = "@{/ammendeCom}">Ammendement Commission</a></li>
+                  </ul>
+                </li>
+                <li><a th:href = "@{/vote}">Vote</a></li>
+                <li><a href="contact.html">Contact</a></li>
+              </ul>
+            </nav>
+          </div>
+
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+          </div>
+    </header>
+    
+
+   </div>     
+  
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/jquery.countdown.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/bootstrap-datepicker.min.js"></script>
+  <script src="js/aos.js"></script>
+
+  <script src="js/main.js"></script>
+    
+  </body>
+</html>

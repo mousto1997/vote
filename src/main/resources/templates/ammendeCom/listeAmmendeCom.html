@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Vote - Ammendement Commission permanante</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<script type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div th:include="header"></div>
+
+<div layout:fragment="content">
+<h1 class="center"> Ammendement Commission permanante</h1>
+<div class="container col-md-6 col-sm-8 ">
+  <table class="table">
+    <tr>
+     <th> ID</th><th>OBJET VISE</th><th>LIBELLE</th><th>CONTENU</th><th>COMMISSION</th><th>TEXT LOI</th><th>MODIFIER</th><th>SUPPRIMER</th>
+    </tr>
+    <tbody>
+      <tr th:each="c:${amendementCommissions}">
+        <td th:text="${c.idAmandCom}"></td>
+        <td th:text="${c.objetViser}"></td>
+        <td th:text="${c.libelle}"></td>
+        <td th:text="${c.contenu}"></td>
+        <td th:text="${c.comissionPerm.nomComPerm}" ></td>
+        <td th:text="${c.texteLois.libelle}" ></td>
+        <td><a th:href="@{editAmmendeCom(idAmandCom=${c.idAmandCom})}">Modifier</a></td>
+        <td><a onclick="return confirm('Voulez vous vraiment supprimer ?')" th:href="@{deleteAmmendeCom(idAmandCom=${c.idAmandCom})}">Supprimer</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+</body>
+</html>

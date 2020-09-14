@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="ISO-8859-1">
+<title>view image</title>
+</head>
+<body>
+
+<div>
+
+</div th:each="c:${image}">
+<img alt="" th:src="@{getPhoto(idImage=${c.idImage})}">
+</body>
+</html>

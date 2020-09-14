@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ 	xmlns:layout="http://www.ulraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Vote - Depute participe Groupe parlemantaire</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+<script type="text/javascript"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div th:include="layout"></div>
+
+<div layout:fragment="content">
+<h1 class="center">Participe groupe parlementaire</h1>
+<div class="container col-md-5 col-sm-12 col-md-offsee ">
+  <div class="panel panel-primary">
+    <div class="panel-heading center" >Ajouter une participation groupe parlementaire</div>
+    <div class="panel-body">
+      <form th:action="@{/saveParticipeGP}" th:object="${participeGP}" method="post">
+      <label>ID : </label>
+      <label th:text="${participeGP.idPG}"></label>
+      <input type="hidden" name="idPG" th:field=*{idPG} class="form-control" id="post" />
+        <div class="form-group">
+          <label for="post" class="cotrol-label">Post occupé : </label>
+          <input type="text" name="posteGP" th:field=*{posteGP} class="form-control" id="post" placeholder="post"/>
+          <span class="red" th:errors="${participeGP.posteGP}"></span>
+        </div>
+        <div class="form-group">
+          <label for="nsession" class="cotrol-label">Groupe parlementaire : </label>
+          <select class="form-control" name="groupeP">
+            <option type="text" th:each="p:${groupes}" th:value="${p.idGroupe}" th:text="${p.nomGroupe}"></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nsession" class="cotrol-label">Député conserné : </label>
+          <select class="form-control" name="depute">
+            <option type="text" th:each="a:${deputes}" th:value="${a.idDepute}" th:text="${a.prenom}"></option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container col-md-6 col-sm-8 ">
+  <table class="table">
+    <tr>
+     <th> ID</th><th>POST</th><th>DEPUTE</th><th>COMMISSION</th><th>MODIFIER</th><th>SUPPRIMER</th>
+    </tr>
+    <tbody>
+      <tr th:each="c:${participegps}">
+        <td th:text="${c.idPG}"></td>
+        <td th:text="${c.posteGP}"></td>
+        <td th:text="${c.depute.prenom}" ></td>
+        <td th:text="${c.groupeP.nomGroupe}" ></td>
+        <td><a th:href="@{editParticipeGP(idPG=${c.idPG})}">Modifier</a></td>
+        <td><a onclick="return confirm('Voulez vous vraiment supprimer ?')" th:href="@{deleteParticipeGP(idPG=${c.idPG})}">Supprimer</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+</div>
+</body>
+</html>
